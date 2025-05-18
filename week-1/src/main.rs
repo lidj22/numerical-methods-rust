@@ -2,29 +2,15 @@
 
 use std::f64::consts::PI;
 
-fn add_one(x: f64) -> f64 {
-    x + 1.
-}
+mod functions;
+use functions::add_one;
+use functions::sine;
 
-fn sine(x: f64) -> f64 {
-    x.sin()
-}
+mod differentiation;
+use differentiation::derivative;
 
-fn derivative(f: fn(f64) -> f64, x: f64, step_size: f64) -> f64 {
-    (f(x + step_size) - f(x)) / step_size
-}
-
-fn integrate(f: fn(f64) -> f64, a: f64, b: f64, step_size: f64) -> f64 {
-    // this is either floor or ceil or index add/remove 1 I forgot.
-    let n = (( b - a ) / step_size).floor();
-    let mut i: f64 = 0.;
-    let mut total: f64 = 0.;
-    while i < n {
-        total = total + step_size * f(a + i * step_size);
-        i = i + 1.0;
-    }
-    total
-}
+mod integration;
+use integration::integrate;
 
 fn main() {
 
