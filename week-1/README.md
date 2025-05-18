@@ -1,25 +1,87 @@
 # Week 1 - Integration and Differentiation
-> I never get indices right first try.
-> I also remember now, my notes are a mess. Just read the references
-
-Let $f$ be nice.
 
 ## Theory
 
-### Differentiation
+### Numerical Analysis - Floating Point Numbers
+
+Definition of floating point number:
+
+$$
+\bar{x} = (-1)^s\bigg(\sum_{i=0}^{m-1}d_i\beta^{-1}\bigg)\beta^e
+$$
+
+basically scientific notation.
+
+Think about what it means for a number to be "normalized."
+
+Exercise: does floor: f32 -> i32 exist? No (check range).
+
+IEEE Definitions:
+- single precision floating point number (32 bits)
+- double precision floating point number (64 bits)
+
+32 bit standard: 1 bit for sign, 8 bits exponent, 23 bits mantissa.
+
+64 bit standard: 1 bit sign, 11 bits exponent, 52 bits mantissa
+
+Exercise: why do we have subnormal floating point numbers?
+
+Exercise: derive the "important numbers" for the IEEE floating point numbers section. In other words: how did they come up with these numbers
+
+### Numerical Differentiation
 The derivative of $f$ at point $x$ can be approximated with timestep $h > 0$:
 
 $$
 \dfrac{df}{dx}\approx\dfrac{\Delta f}{\Delta x} = \dfrac{f(x+h) - f(x)}{h}
 $$
 
+This is "forward differencing". We also have "backward differencing":
+
+$$
+\dfrac{df}{dx}\approx\dfrac{f(x) - f(x-h)}{h}
+$$
+
 So this is a pretty straightforward implementation.
 
-Other one is the average:
+Other one is "centered differencing" which is usually better:
 
 $$
 \dfrac{df}{dx}\approx\dfrac{f(x+h) - f(x-h)}{2h}
 $$
+
+These are also referred to as "finite difference" methods. Naturally, there are issues with accuracy/stability (which will become apparent when implementing numerical differentiators in Rust).
+
+Discussion: truncation error vs rounding error, step size dilemma.
+
+**Differentiation by interpolation**: Review the Interpolation theorem and the Lagrange interpolating polynomial. Given a set of data points, we differentiate the interpolant.
+
+There are other differentiation methods (method of undetermined coefficients, Richardson's extrapolation).
+
+### Symbolic Differentiation (TBD)
+
+Review: conditions for a function to be symbolically differentiable.
+
+TODO: expression swell of symbolic expressions
+
+### Automatic Differentiation
+
+Review: Jacobian matrix
+
+An implementation of differentiation (autodiff) that also operates on program of interest: it operates on the intermediate implementation of a function.
+
+Video: [What is Automatic Differentiation?](https://www.youtube.com/watch?v=wG_nF1awSSY)
+
+Exercise: This is a good one from the video. Given
+
+$$
+f(x_1, x_2) = \bigg[\sin\bigg(\dfrac{x_1}{x_2}\bigg) + \dfrac{x_1}{x_2} - e^{x_2}\bigg]\times\bigg[\dfrac{x_1}{x_2} - e^{x_2}\bigg]
+$$
+
+find $\dfrac{\partial f}{\partial x_1}\bigg\vert_{(1.5, 0.5)}$ using automatic differentiation (by HAND).
+
+Discussion: forward vs reverse mode of autodiff (when is which more ideal).
+
+Link to the autograd paper/thesis: [Modeling, Inference and Optimization with Composable Differentiable Procedures](https://dougalmaclaurin.com/phd-thesis.pdf). See Chapter 4.
 
 ### Integration
 
@@ -38,32 +100,6 @@ $$
 $$
 
 > Also probably $n$ should be a floor or ceiling, we should probably figure that part out.
-
-### Numerical Analysis
-
-Definition of floating point number:
-
-$$
-\bar{x} = (-1)^s\bigg(\sum_{i=0}^{m-1}d_i\beta^{-1}\bigg)\beta^e
-$$
-
-basically scientific notation.
-
-Think about what it means for a number to be "normalized."
-
-exercise: does floor: f32 -> i32 exist? No (check range).
-
-IEEE Definitions:
-- single precision floating point number (32 bits)
-- double precision floating point number (64 bits)
-
-32 bit standard: 1 bit for sign, 8 bits exponent, 23 bits mantissa.
-
-64 bit standard: 1 bit sign, 11 bits exponent, 52 bits mantissa
-
-exercise: why do we have subnormal floating point numbers?
-
-exercise: derive the "important numbers" for the IEEE floating point numbers section. In other words: how did they come up with these numbers
 
 ## Exercises
 

@@ -31,3 +31,6 @@ I kind of want to put in some ML, but also I don't want to gather data...
 
 ## Week 1 - Differentiation and Integration
 Basic: implement a function differentiator and integrator.
+
+## Readings
+- An Introduction to Computational Fluid Dynamics: The Finite Volume Method
