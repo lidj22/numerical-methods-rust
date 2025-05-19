@@ -18,8 +18,8 @@ Some learning outcomes along the way:
 
 | Week no. | Week | Topic |
 | - | - | - |
-| 1 | 5/12 - 5/18 | Riemann summation, differentiation |
-| 2 | 5/19 - 5/25 | Taylor series, Euler's method, RK4 |
+| 1 | 5/12 - 5/18 | Calculus and floating point numbers |
+| 2 | 5/19 - 5/25 | Dynamical systems |
 | 3 | 5/26 - 6/1 | CORDIC and sqrt (without using rust's square root algorithm) |
 | 4 | 6/2 - 6/8 | Gierer Meinhardt system. This is where you might want to do some visualizing. |
 | 5 | 6/9 - 6/15 | Navier-Stokes equations (pt. 1) |
@@ -29,5 +29,30 @@ I don't actually remember what the NS equations were about. Guess we'll find out
 
 I kind of want to put in some ML, but also I don't want to gather data...
 
-## Week 1 - Differentiation and Integration
-Basic: implement a function differentiator and integrator.
+## Week 1 - Calculus and floating point numbers
+
+Review the *very* basics of numerical differentiation and integration, definition of floating point numbers, IEEE single and double precision definitions. Truncation and rounding errors with numerical differentiation demonstrations in Rust with `f32` and `f64` (i.e. why we need to choose the right step size or implement adaptive step size). 
+
+Overview of differentiation techniques (analytic, numerical, symbolic, automatic). Went through basic Rust data types and logical flows, and basic modules.
+
+### Problems
+
+- Derive the maximum normal, minimum positive, maximum subnormal, and minimum positive subnormal numbers in the IEEE single precision floating point number system.
+- Explain why, in the `main.rs` example script, the forward differentiation error for the function $x\mapsto x+1$ approaches $1$ as step size approaches $0$.
+
+## Week 2 - Dynamical systems (TBD)
+
+Expected (TBD): follow up on learning floating point arithmetic: rounding theorem (numerical analysis), big/little endianness. And read Goldberg.
+
+Expected 2: start with review of linear algebra -> numerical linear algebra. Then a review of differential equations (eigenvalues/eigenvectors) -> dynamical systems -> numerical methods of solving DEs and PDEs. Then, follow up with a survey of modern dynamical systems approaches. Only meant as a survey of techniques, not comprehensive (and might drag on to week 3).
+
+> Also put some focus in vector and tensor algebra: this will probably be important later on.
+
+> If we're doing the navier stokes, we might want to start with the derivation sooner.
+
+Outcome (TBD): design and implement a matrix or tensor struct in Rust. Implement numerical methods like determinant, matrix multiplication and addition. Solve systems of differential equations using Euler and RK4.
+
+## Week 3 - TBD
+
+## Readings
+- An Introduction to Computational Fluid Dynamics: The Finite Volume Method
