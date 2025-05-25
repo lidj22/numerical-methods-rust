@@ -12,15 +12,17 @@ Some learning outcomes along the way:
 **Bonus points**:
 - learn multiprocessing, multi-threading, and/or that "tokio" thing somehow
 
+I consider myself a constructivist learner, and I learn by doing exercises.
+
 ## Outline
 
 > This *might* be a bit optimistic...
 
 | Week no. | Week | Topic |
 | - | - | - |
-| 1 | 5/12 - 5/18 | Calculus and floating point numbers |
-| 2 | 5/19 - 5/25 | Dynamical systems |
-| 3 | 5/26 - 6/1 | CORDIC and sqrt (without using rust's square root algorithm) |
+| 1 | 5/12 - 5/18 | [Calculus and floating point numbers](#week-1---calculus-and-floating-point-numbers) |
+| 2 | 5/19 - 5/25 | Linear algebra |
+| 3 | 5/26 - 6/1 | Binary arithmetic and CORDIC |
 | 4 | 6/2 - 6/8 | Gierer Meinhardt system. This is where you might want to do some visualizing. |
 | 5 | 6/9 - 6/15 | Navier-Stokes equations (pt. 1) |
 | 6 | 6/16 - 6/22 | Navier-Stokes equations (pt. 2) |
@@ -29,7 +31,7 @@ I don't actually remember what the NS equations were about. Guess we'll find out
 
 I kind of want to put in some ML, but also I don't want to gather data...
 
-## Week 1 - Calculus and floating point numbers
+## [Week 1 - Calculus and floating point numbers](/week-1/README.md)
 
 Review the *very* basics of numerical differentiation and integration, definition of floating point numbers, IEEE single and double precision definitions. Truncation and rounding errors with numerical differentiation demonstrations in Rust with `f32` and `f64` (i.e. why we need to choose the right step size or implement adaptive step size). 
 
@@ -40,7 +42,7 @@ Overview of differentiation techniques (analytic, numerical, symbolic, automatic
 - Derive the maximum normal, minimum positive, maximum subnormal, and minimum positive subnormal numbers in the IEEE single precision floating point number system.
 - Explain why, in the `main.rs` example script, the forward differentiation error for the function $x\mapsto x+1$ approaches $1$ as step size approaches $0$.
 
-## Week 2 - Dynamical systems (TBD)
+## [Week 2 - Linear algebra (TBD)](/week-2/README.md)
 
 Expected (TBD): follow up on learning floating point arithmetic: rounding theorem (numerical analysis), big/little endianness. And read Goldberg.
 
@@ -56,3 +58,7 @@ Outcome (TBD): design and implement a matrix or tensor struct in Rust. Implement
 
 ## Readings
 - An Introduction to Computational Fluid Dynamics: The Finite Volume Method
+
+### Prep
+- [How to derive the Navier-Stokes equations](https://cfd.university/learn/10-key-concepts-everyone-must-understand-in-cfd/how-to-derive-the-navier-stokes-equations/)
+- [Lecture Notes: Navier-Stokes Equations](https://www.uni-ulm.de/fileadmin/website_uni_ulm/mawi.inst.020/wiedemann/Skripte/EW_Navier-Stokes_Equations.pdf)
