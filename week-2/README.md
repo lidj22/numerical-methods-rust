@@ -88,7 +88,7 @@ Review: what is a path and what is a module? In the crate root, when declaring m
 
 Exercise: can you declare modules elsewhere than the crate root file, which are not submodules?
 
-### Performance
+#### Performance
 
 The naive implementation of rust takes 2.8 SECONDS to run the dynamical system, which is SLOWER than the vanilla python implementation (2.3s). However an optimized version takes as little as 0.004 seconds!!
 
