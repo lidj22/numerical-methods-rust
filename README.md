@@ -22,10 +22,11 @@ I consider myself a constructivist learner, and I learn by doing exercises.
 | - | - | - |
 | 1 | 5/12 - 5/18 | [Calculus and floating point numbers](#week-1---calculus-and-floating-point-numbers) |
 | 2 | 5/19 - 5/25 | [Linear algebra](#week-2---linear-algebra) |
-| 3 | 5/26 - 6/1 | Binary arithmetic and CORDIC |
-| 4 | 6/2 - 6/8 | Differential equations and simulations in Rust |
-| 5 | 6/9 - 6/15 | Navier-Stokes equations (pt. 1) |
-| 6 | 6/16 - 6/22 | Navier-Stokes equations (pt. 2) |
+| - | 5/26 - 6/1 | improvised break |
+| 3 | 6/2 - 6/8 | Binary arithmetic and CORDIC |
+| 4 | 6/9 - 6/15 | Differential equations and simulations in Rust |
+| 5 | 6/16 - 6/22 | Navier-Stokes equations (pt. 1) |
+| 6 | 6/23 - 6/29 | Navier-Stokes equations (pt. 2) |
 
 I don't actually remember what the NS equations were about. Guess we'll find out on 6/9! Or maybe we can try something else, like molecular dynamics or some interesting differential equation.
 
