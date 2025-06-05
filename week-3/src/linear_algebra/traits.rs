@@ -1,7 +1,5 @@
 use crate::linear_algebra::{LinearAlgebraError, Matrix};
 
-// TODO: maybe look at num_traits.
-
 pub trait Norm<T> {
     fn norm(&self) -> Result<T, LinearAlgebraError>;
 }

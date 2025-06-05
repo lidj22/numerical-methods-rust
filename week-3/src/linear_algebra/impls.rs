@@ -1,3 +1,5 @@
+use num_traits::Float;
+
 use crate::linear_algebra::errors::LinearAlgebraError;
 use crate::linear_algebra::Add;
 use crate::linear_algebra::Apply;
@@ -10,8 +12,8 @@ use crate::linear_algebra::ScalarMult;
 use crate::linear_algebra::Trace;
 use crate::linear_algebra::Transpose;
 
-impl <const ROWS: usize, const COLS: usize> Norm<f64> for Matrix<f64, ROWS, COLS> {
-    fn norm(&self) -> Result<f64, LinearAlgebraError> {
+impl <T, const ROWS: usize, const COLS: usize> Norm<T> for Matrix<T, ROWS, COLS> where T: Float {
+    fn norm(&self) -> Result<T, LinearAlgebraError> {
         if ROWS == 0 && COLS == 0 {
             return Err(LinearAlgebraError::EmptyMatrix);
         }
@@ -28,18 +30,18 @@ impl <const ROWS: usize, const COLS: usize> Norm<f64> for Matrix<f64, ROWS, COLS
     }
 }
 
-impl <const ROWS: usize, const COLS: usize> Trace<f64> for Matrix<f64, ROWS, COLS> {
-    fn trace(&self) -> f64 {
-        let mut total = 0.;
+impl <T, const ROWS: usize, const COLS: usize> Trace<T> for Matrix<T, ROWS, COLS> where T: Float {
+    fn trace(&self) -> T {
+        let mut total = T::zero();
         for i in 0..ROWS.min(COLS) {
-            total += self.values[i][i];
+            total = total + self.values[i][i];
         }
         total
     }
 }
 
-impl <const ROWS: usize, const COLS: usize> Negative<f64, ROWS, COLS> for Matrix<f64, ROWS, COLS> {
-    fn negative(&self) -> Matrix<f64, ROWS, COLS> {
+impl <T, const ROWS: usize, const COLS: usize> Negative<T, ROWS, COLS> for Matrix<T, ROWS, COLS> where T: Float {
+    fn negative(&self) -> Matrix<T, ROWS, COLS> {
         let mut values = self.values; // we are using Copy trait here.
         for i in 0..ROWS {
             for j in 0..COLS {
@@ -50,9 +52,9 @@ impl <const ROWS: usize, const COLS: usize> Negative<f64, ROWS, COLS> for Matrix
     }
 }
 
-impl <const ROWS: usize, const COLS: usize> Transpose<f64, ROWS, COLS> for Matrix<f64, ROWS, COLS> {
-    fn transpose(&self) -> Matrix<f64, COLS, ROWS> {
-        let mut values = [[0.; ROWS]; COLS];
+impl <T, const ROWS: usize, const COLS: usize> Transpose<T, ROWS, COLS> for Matrix<T, ROWS, COLS> where T: Float {
+    fn transpose(&self) -> Matrix<T, COLS, ROWS> {
+        let mut values = [[T::zero(); ROWS]; COLS];
         for i in 0..ROWS {
             for j in 0..COLS {
                 values[j][i] = self.values[i][j];
@@ -62,12 +64,12 @@ impl <const ROWS: usize, const COLS: usize> Transpose<f64, ROWS, COLS> for Matri
     }
 }
 
-impl <const ROWS: usize, const COLS: usize> Add<f64, ROWS, COLS> for Matrix<f64, ROWS, COLS> {
-    fn add(&self, rhs: &Matrix<f64, ROWS, COLS>) -> Matrix<f64, ROWS, COLS> {
+impl <T, const ROWS: usize, const COLS: usize> Add<T, ROWS, COLS> for Matrix<T, ROWS, COLS> where T: Float {
+    fn add(&self, rhs: &Matrix<T, ROWS, COLS>) -> Matrix<T, ROWS, COLS> {
         let mut values = self.values; // we are using Copy trait here.
         for i in 0..ROWS {
             for j in 0..COLS {
-                values[i][j] += rhs.values[i][j]; 
+                values[i][j] = values[i][j] + rhs.values[i][j]; 
             }
         }
         Matrix { values: values }
@@ -96,25 +98,25 @@ impl <T, const ROWS: usize, const COLS: usize> Apply<T, ROWS, COLS> for Matrix<T
     }
 }
 
-impl <const ROWS: usize, const COLS: usize> ScalarMult<f64, ROWS, COLS> for Matrix<f64, ROWS, COLS> {
-    fn scalar_mult(&self, scalar: f64) -> Matrix<f64, ROWS, COLS> {
+impl <T, const ROWS: usize, const COLS: usize> ScalarMult<T, ROWS, COLS> for Matrix<T, ROWS, COLS> where T: Float {
+    fn scalar_mult(&self, scalar: T) -> Matrix<T, ROWS, COLS> {
         let mut values = self.values; // we are using Copy trait here.
         for i in 0..ROWS {
             for j in 0..COLS {
-                values[i][j] *= scalar;
+                values[i][j] = values[i][j] * scalar;
             }
         }
         Matrix { values: values }
     }
 }
 
-impl <const A: usize, const B: usize, const C: usize> MatrixMult<f64, B, C> for Matrix<f64, A, B> {
-    type Output = Matrix<f64, A, C>;
-    fn mult(&self, rhs: &Matrix<f64, B, C>) -> Matrix<f64, A, C> {
-        let mut values = [[0.; C]; A];
+impl <T, const A: usize, const B: usize, const C: usize> MatrixMult<T, B, C> for Matrix<T, A, B> where T: Float {
+    type Output = Matrix<T, A, C>;
+    fn mult(&self, rhs: &Matrix<T, B, C>) -> Matrix<T, A, C> {
+        let mut values = [[T::zero(); C]; A];
         for i in 0..A {
             for j in 0..C {
-                let mut total = 0.;
+                let mut total = T::zero();
                 for k in 0..B {
                     total = total + self.values[i][k] * rhs.values[k][j];
                 }

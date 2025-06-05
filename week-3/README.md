@@ -2,7 +2,7 @@
 
 ## Rust - Matrices (Take 2)
 
-We start by re-implementing the matrix library from Week 2, with a greater emphasis on traits, generics, and exception handling.
+We start by re-implementing the matrix library from Week 2, with a greater emphasis on traits, generics, and exception handling. Also using third-party crates (`num_traits`).
 
 To motivate everything here, we begin by defining a single trait for matrix multiplication. Then, realize that during testing, we need to assert that two matrices are equal. How to do this?
 
