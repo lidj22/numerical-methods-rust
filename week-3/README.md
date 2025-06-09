@@ -25,3 +25,15 @@ Also for `approx_equals`, how do we set a default parameter to, say 0.0001? Same
 At this point, all the code was in one file, so we might look at how to split the code.
 
 The aforementioned operations are all for generic matrices of arbitrary dimension. But what about square matrices?
+
+## CORDIC
+
+Review: what are algebraic and transcendental functions? Definition of an algebraic function?
+
+Review: Taylor expansions of sine and cosine function
+
+Review: total scaling factor.
+
+Readings: notes on Digital Arithmetic Ercegovac and Lang (2003)
+
+I have a feeling that implementing CORDIC is going to take longer than a day...
