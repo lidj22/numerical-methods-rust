@@ -51,6 +51,8 @@ Naive implementation of 3-dimensional matrix struct in Rust, including trace, de
 
 ## Week 3 - Binary arithmetic and CORDIC (TBD)
 
+I don't know what happened this week.
+
 Expected outcomes: 
 - learn and apply Rust exception handling, generics, traits, and lifecycles.
 - CS concepts: binary arithmetic, bitshifts, add, mult
